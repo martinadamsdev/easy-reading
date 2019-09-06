@@ -2,7 +2,7 @@ const path = require('path')
 const resolve = dir => {return path.join(__dirname, dir)}
 
 module.exports = {
-  // assetsDir: 'static',
+  assetsDir: 'static',
   // lintOnSave: true, // 是否开启eslint保存检测
   // productionSourceMap: false, // 是否在构建生产包时生成sourcdeMap
   chainWebpack: config => {
