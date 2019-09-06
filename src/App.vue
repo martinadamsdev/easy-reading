@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <span class="icon-back"></span>
-    <div id="nav">
+<!--    <div id="nav">-->
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
-    </div>
+<!--    </div>-->
     <router-view/>
   </div>
 </template>
@@ -13,11 +13,8 @@
 export default {
   name: 'App'
 }
-// document.addEventListener('DOMContentLoaded', () => {
-  
-// })
-document.addEventListener('DOMContentLoaded',function(){
-  console.log('3 seconds passed');
+
+document.addEventListener('DOMContentLoaded',() => {
   const html = document.querySelector('html')
   let fontSize = window.innerWidth / 10
   fontSize = fontSize > 50 ? 50 : fontSize
