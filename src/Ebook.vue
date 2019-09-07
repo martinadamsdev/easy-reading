@@ -16,6 +16,7 @@
         this.book = new Epub(DOWNLOAD_URL)
         console.log(this.book);
         // 生成 Rendtion
+        this.book.renderTo();
         // 通过 Rendtion.display 渲染电子书
 
       }
