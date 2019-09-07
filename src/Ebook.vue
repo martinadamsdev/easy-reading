@@ -1,12 +1,12 @@
 <template>
   <div>
-    <a href="./assets/test.epub">xxxxx</a>
+
   </div>
 </template>
 
 <script>
   import Epub from 'epubjs'
-  const DOWNLOAD_URL = './assets/test.epub'
+  const DOWNLOAD_URL = '/static/test.epub'
   export default {
     name: "Ebook",
     methods: {
