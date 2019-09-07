@@ -1,10 +1,6 @@
 <template>
   <div id="app">
-    <span class="icon-back"></span>
-<!--    <div id="nav">-->
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-<!--    </div>-->
+    <!-- <span class="icon-back"></span> -->
     <router-view/>
   </div>
 </template>
