@@ -11,6 +11,7 @@
     </div>
     <menu-bar :ifTitleAndMenuShow="ifTitleAndMenuShow"
               :fontSizeList="fontSizeList"
+              :defaultFontSize="defaultFontSize"
               ref="menuBar"></menu-bar>
   </div>
 </template>
@@ -38,7 +39,8 @@
           { fontSize: 20 },
           { fontSize: 22 },
           { fontSize: 24 }
-        ]
+        ],
+        defaultFontSize: 16
       }
     },
     methods: {

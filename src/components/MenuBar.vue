@@ -20,14 +20,18 @@
       <div class="setting-wrapper" v-show="ifSettingShow">
         <div class="setting-font-size" :fontSizeList="fontSizeList">
           <div class="preview" :style="{fontSize: fontSizeList[0].fontSize + 'px'}">A</div>
-          <div class="select-wrapper"
-               v-for="(item, index) in fontSizeList"
-               :key="index">
-            <div class="line"></div>
-            <div class="point-wrapper">
-              <div class="point"></div>
+          <div class="select">
+            <div class="select-wrapper"
+                 v-for="(item, index) in fontSizeList"
+                 :key="index">
+              <div class="line"></div>
+              <div class="point-wrapper">
+                <div class="point" v-show="defaultFontSize === item.fontSize">
+                  <div class="small-point"></div>
+                </div>
+              </div>
+              <div class="line"></div>
             </div>
-            <div class="line"></div>
           </div>
           <div class="preview" :style="{fontSize: fontSizeList[fontSizeList.length - 1].fontSize + 'px'}">A</div>
         </div>
@@ -49,7 +53,8 @@
         type: Boolean,
         default: false
       },
-      fontSizeList: Array
+      fontSizeList: Array,
+      defaultFontSize: Number
     },
     methods: {
       showSetting () {
@@ -97,22 +102,47 @@
       .preview
         flex: 0 0 px2rem(40)
         @include center
-      .select-wrapper
-        flex: 1
+      .select
         display: flex
-        align-content: center
-        &:first-child
-          background: red
-        .line
+        flex: 1
+        .select-wrapper
           flex: 1
-          height: 0
-          justify-content: center
-          border-top: px2rem(1) solid #ccc
-        .point-wrapper
-          flex: 0 0 0
-          width: 0
-          height: px2rem(7)
-          border-left: px2rem(1) solid #ccc
+          display: flex
+          align-items: center
+          &:first-child
+            .line
+              &:first-child
+                border-top: none
+            .point-wrapper
+              border-left: none
+          &:last-child
+            .line
+              &:last-child
+                border-top: none
+            .point-wrapper
+              border-left: none
+          .line
+            flex: 1
+            height: 0
+            justify-content: center
+            border-top: px2rem(1) solid #ccc
+          .point-wrapper
+            position: relative
+            flex: 0 0 0
+            width: 0
+            height: px2rem(7)
+            border-left: px2rem(1) solid #ccc
+            .point
+              position: absolute
+              top: px2rem(-8)
+              left: px2rem(-10)
+              width: px2rem(20)
+              height: px2rem(20)
+              border-radius: 50%
+              background: white
+              border: px2rem(1) solid #ccc
+              box-shadow: 0 px2rem(4) px2rem(4) rgba(0, 0, 0, .15)
+              /*.small-point*/
 
         /*bottom: 0*/
         /*left: 0*/
