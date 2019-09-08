@@ -1,3 +1,4 @@
+'use strict'
 const path = require('path')
 const resolve = dir => {return path.join(__dirname, dir)}
 
@@ -9,7 +10,8 @@ module.exports = {
     config.resolve.alias
       .set('@', resolve('src'))
       .set('views', resolve('src/views'))
-      .set('static', resolve('static'));
+      .set('assets', resolve('src/assets'))
+      .set('components', resolve('src/components'));
     // config.optimization.runtimeChunk('single')
   },
   // devServer: {
