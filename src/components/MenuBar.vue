@@ -96,6 +96,7 @@
       width: 100%
       height: px2rem(60)
       box-shadow: 0 px2rem(-8) px2rem(8) rgba(0, 0, 0, .15)
+      background: white
       .setting-font-size
         display: flex
         height: 100%
@@ -142,7 +143,8 @@
               background: white
               border: px2rem(1) solid #ccc
               box-shadow: 0 px2rem(4) px2rem(4) rgba(0, 0, 0, .15)
-              /*.small-point*/
+              .small-point
+                width: px2rem(5)
 
         /*bottom: 0*/
         /*left: 0*/
