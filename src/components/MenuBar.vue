@@ -20,7 +20,15 @@
       <div class="setting-wrapper" v-show="ifSettingShow">
         <div class="setting-font-size" :fontSizeList="fontSizeList">
           <div class="preview" :style="{fontSize: fontSizeList[0].fontSize + 'px'}">A</div>
-          <div class="select-wrapper"></div>
+          <div class="select-wrapper"
+               v-for="(item, index) in fontSizeList"
+               :key="index">
+            <div class="line"></div>
+            <div class="point-wrapper">
+              <div class="point"></div>
+            </div>
+            <div class="line"></div>
+          </div>
           <div class="preview" :style="{fontSize: fontSizeList[fontSizeList.length - 1].fontSize + 'px'}">A</div>
         </div>
       </div>
@@ -88,11 +96,23 @@
         height: 100%
       .preview
         flex: 0 0 px2rem(40)
-        background: orange
         @include center
       .select-wrapper
         flex: 1
-        background: yellow
+        display: flex
+        align-content: center
+        &:first-child
+          background: red
+        .line
+          flex: 1
+          height: 0
+          justify-content: center
+          border-top: px2rem(1) solid #ccc
+        .point-wrapper
+          flex: 0 0 0
+          width: 0
+          height: px2rem(7)
+          border-left: px2rem(1) solid #ccc
 
         /*bottom: 0*/
         /*left: 0*/
