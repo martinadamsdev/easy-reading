@@ -18,8 +18,10 @@
     </transition>
     <transition name="slide-up">
       <div class="setting-wrapper" v-show="ifSettingShow">
-        <div class="setting-font-size">
-
+        <div class="setting-font-size" :fontSizeList="fontSizeList">
+          <div class="preview" :style="{fontSize: fontSizeList[0].fontSize + 'px'}">A</div>
+          <div class="select-wrapper"></div>
+          <div class="preview" :style="{fontSize: fontSizeList[fontSizeList.length - 1].fontSize + 'px'}">A</div>
         </div>
       </div>
     </transition>
@@ -38,7 +40,8 @@
       ifTitleAndMenuShow: {
         type: Boolean,
         default: false
-      }
+      },
+      fontSizeList: Array
     },
     methods: {
       showSetting () {
@@ -81,9 +84,18 @@
       height: px2rem(60)
       box-shadow: 0 px2rem(-8) px2rem(8) rgba(0, 0, 0, .15)
       .setting-font-size
-        position: absolute
-        bottom: 0
-        left: 0
-        z-index: 101
-        width: 100%
+        display: flex
+        height: 100%
+      .preview
+        flex: 0 0 px2rem(40)
+        background: orange
+        @include center
+      .select-wrapper
+        flex: 1
+        background: yellow
+
+        /*bottom: 0*/
+        /*left: 0*/
+        /*z-index: 101*/
+        /*width: 100%*/
 </style>
