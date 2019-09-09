@@ -15,7 +15,7 @@
               @setFontSize="setFontSize"
               @themeList="themeList"
               @defaultTheme="defaultTheme"
-              @selectTheme="selectTheme"
+              @setTheme="setTheme"
               ref="menuBar"></menu-bar>
   </div>
 </template>
@@ -55,14 +55,6 @@
             }
           },
           {
-            name: 'default',
-            style: {
-              body: {
-                'color': '#000', 'background': '#fff'
-              }
-            }
-          },
-          {
             name: 'eye',
             style: {
               body: {
@@ -92,8 +84,11 @@
     },
     methods: {
       setTheme (index) {
+        // console.log(this.themes.themeList);
+        // console.log(index);
         this.themes.select(this.themes.themeList[index].name)
         this.defaultTheme = index
+        // console.log(this.themes.themeList);
       },
       registerTheme () {
         this.themeList.forEach(theme => {

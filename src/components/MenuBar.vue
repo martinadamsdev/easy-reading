@@ -39,9 +39,13 @@
         <div class="setting-theme" v-else-if="showTag === 1">
             <div class="setting-theme-item"
                  v-for="(item, index) in themeList"
-                :key="index">
-              <div class="preview" :style="{background: item.style.body.background}"></div>
-              <div class="text">{{item.name}}</div>
+                :key="index" @click="setTheme(index)">
+              <div class="preview"
+                   :style="{background: item.style.body.background}"
+                   :class="{'no-border': item.style.body.background !== '#fff'}"
+
+              ></div>
+              <div class="text" :class="{'selected': index === defaultTheme}">{{item.name}}</div>
             </div>
         </div>
       </div>
@@ -69,6 +73,9 @@
       defaultTheme: Number
     },
     methods: {
+      setTheme (index) {
+        this.$emit('setTheme', index)
+      },
       setFontSize (fontSize) {
         this.$emit('setFontSize', fontSize)
       },
@@ -173,10 +180,19 @@
           flex: 1
           display: flex
           flex-direction: column
+          padding: px2rem(5)
+          box-sizing: border-box
           .preview
             flex: 1
+            border: px2rem(1) solid #ccc
+            box-sizing: border-box
+            &.no-border
+              border: none
           .text
-            flex: 0 0 px2rem(30)
-            font-size: px2rem(16)
-            color:
+            flex: 0 0 px2rem(20)
+            font-size: px2rem(11)
+            color: #333
+            @include center
+            &.select
+              color: #ccc
 </style>
