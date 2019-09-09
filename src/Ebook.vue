@@ -12,7 +12,7 @@
     <menu-bar :ifTitleAndMenuShow="ifTitleAndMenuShow"
               :fontSizeList="fontSizeList"
               :defaultFontSize="defaultFontSize"
-              :setFontSize="setFontSize"
+              @setFontSize="setFontSize"
               ref="menuBar"></menu-bar>
   </div>
 </template>
@@ -99,7 +99,7 @@
         position: absolute
         top: 0
         left: 0
-        z-index: 100 
+        z-index: 50
         display: flex
         width: 100%
         height: 100%
