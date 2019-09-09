@@ -154,9 +154,4 @@
                 height: px2rem(5)
                 background: black
                 border-radius: 50%
-
-        /*bottom: 0*/
-        /*left: 0*/
-        /*z-index: 101*/
-        /*width: 100%*/
 </style>
