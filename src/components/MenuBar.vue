@@ -23,11 +23,12 @@
           <div class="select">
             <div class="select-wrapper"
                  v-for="(item, index) in fontSizeList"
-                 :key="index">
+                 :key="index"
+                 @click="setFontSize(item.fontSize)">
               <div class="line"></div>
               <div class="point-wrapper">
                 <div class="point" v-show="defaultFontSize === item.fontSize">
-                  <div class="small-point"></div>
+                  <div class="small-point" ></div>
                 </div>
               </div>
               <div class="line"></div>
@@ -57,6 +58,9 @@
       defaultFontSize: Number
     },
     methods: {
+      setFontSize (fontSize) {
+        this.$emit('setFontSize', fontSize)
+      },
       showSetting () {
         this.ifSettingShow = true
       },
