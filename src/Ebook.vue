@@ -12,6 +12,7 @@
     <menu-bar :ifTitleAndMenuShow="ifTitleAndMenuShow"
               :fontSizeList="fontSizeList"
               :defaultFontSize="defaultFontSize"
+              :setFontSize="setFontSize"
               ref="menuBar"></menu-bar>
   </div>
 </template>
@@ -44,6 +45,12 @@
       }
     },
     methods: {
+      setFontSize (fontSize) {
+        this.defaultFontSize = fontSize
+        if (this.themes) {
+          this.theme.fontSize(fontSize + 'px')
+        }
+      },
       toggleTitleAndMenu () {
         this.ifTitleAndMenuShow = !this.ifTitleAndMenuShow
         if(!this.ifTitleAndMenuShow) {
@@ -65,12 +72,16 @@
         // 生成 Ebook
         this.book = new Epub(DOWNLOAD_URL)
         // 生成 Rendtion
-        this.redetion = this.book.renderTo('read', {
+        this.rendition = this.book.renderTo('read', {
           width: window.innerWidth,
           height: window.innerHeight
         });
         // 通过 Rendtion.display 渲染电子书
-        this.redetion.display()
+        this.rendition.display()
+        // 获取 Theme 对象
+        this.theme = this.rendition.themes
+        // 设置默认字体
+        this.setFontSize(this.defaultFontSize)
       }
     },
     mounted() {

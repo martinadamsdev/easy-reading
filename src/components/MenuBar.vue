@@ -57,6 +57,9 @@
       defaultFontSize: Number
     },
     methods: {
+      setFontSize (fontSize) {
+        this.$emit('setFontSize', fontSize)
+      },
       showSetting () {
         this.ifSettingShow = true
       },
@@ -143,8 +146,12 @@
               background: white
               border: px2rem(1) solid #ccc
               box-shadow: 0 px2rem(4) px2rem(4) rgba(0, 0, 0, .15)
+              @include center
               .small-point
                 width: px2rem(5)
+                height: px2rem(5)
+                background: black
+                border-radius: 50%
 
         /*bottom: 0*/
         /*left: 0*/
