@@ -41,14 +41,52 @@
           { fontSize: 22 },
           { fontSize: 24 }
         ],
-        defaultFontSize: 16
+        defaultFontSize: 16,
+        themeList: [
+          {
+            name: 'default',
+            style: {
+              'color': '#000', 'background': '#fff'
+            }
+          },
+          {
+            name: 'default',
+            style: {
+              'color': '#000', 'background': '#fff'
+            }
+          },
+          {
+            name: 'eye',
+            style: {
+              'color': '#000', 'background': '#ceeaba'
+            }
+          },
+          {
+            name: 'night',
+            style: {
+              'color': '#fff', 'background': '#000'
+            }
+          },
+          {
+            name: 'gold',
+            style: {
+              'color': '#000', 'background': 'rgba(241, 236, 226)'
+            }
+          },
+        ]
       }
     },
     methods: {
+      registerTheme () {
+        this.themeList.forEach(theme => {
+          console.log(theme);
+          this.themes.register(theme.name, theme.style)
+        })
+      },
       setFontSize (fontSize) {
         this.defaultFontSize = fontSize
         if (this.themes) {
-          this.theme.fontSize(fontSize + 'px')
+          this.themes.fontSize(fontSize + 'px')
         }
       },
       toggleTitleAndMenu () {
@@ -79,9 +117,13 @@
         // 通过 Rendtion.display 渲染电子书
         this.rendition.display()
         // 获取 Theme 对象
-        this.theme = this.rendition.themes
+        this.themes = this.rendition.themes
         // 设置默认字体
         this.setFontSize(this.defaultFontSize)
+        // this.themes.register(name, styles)
+        // this.themes.select(name)
+        this.registerTheme()
+        this.themes.select('eye')
       }
     },
     mounted() {
@@ -99,7 +141,7 @@
         position: absolute
         top: 0
         left: 0
-        z-index: 50
+        z-index: 999
         display: flex
         width: 100%
         height: 100%
