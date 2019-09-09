@@ -13,6 +13,9 @@
               :fontSizeList="fontSizeList"
               :defaultFontSize="defaultFontSize"
               @setFontSize="setFontSize"
+              @themeList="themeList"
+              @defaultTheme="defaultTheme"
+              @selectTheme="selectTheme"
               ref="menuBar"></menu-bar>
   </div>
 </template>
@@ -46,37 +49,52 @@
           {
             name: 'default',
             style: {
-              'color': '#000', 'background': '#fff'
+              body: {
+                'color': '#000', 'background': '#fff'
+              }
             }
           },
           {
             name: 'default',
             style: {
-              'color': '#000', 'background': '#fff'
+              body: {
+                'color': '#000', 'background': '#fff'
+              }
             }
           },
           {
             name: 'eye',
             style: {
-              'color': '#000', 'background': '#ceeaba'
+              body: {
+                'color': '#000', 'background': '#ceeaba'
+              }
             }
           },
           {
             name: 'night',
             style: {
-              'color': '#fff', 'background': '#000'
+              body: {
+                'color': '#fff', 'background': '#000'
+              }
             }
           },
           {
             name: 'gold',
             style: {
-              'color': '#000', 'background': 'rgba(241, 236, 226)'
+              body: {
+                'color': '#000', 'background': 'rgba(241, 236, 226)'
+              }
             }
           },
-        ]
+        ],
+        defaultTheme: 0
       }
     },
     methods: {
+      setTheme (index) {
+        this.themes.select(this.themes.themeList[index].name)
+        this.defaultTheme = index
+      },
       registerTheme () {
         this.themeList.forEach(theme => {
           console.log(theme);
@@ -96,13 +114,13 @@
         }
       },
       prevPage () {
-        if (this.redetion) {
-          this.redetion.prev()
+        if (this.rendition) {
+          this.rendition.prev()
         }
       },
       nextPage () {
-        if (this.redetion) {
-          this.redetion.next()
+        if (this.rendition) {
+          this.rendition.next()
         }
       },
       // 电子书的解析和渲染
@@ -123,7 +141,7 @@
         // this.themes.register(name, styles)
         // this.themes.select(name)
         this.registerTheme()
-        this.themes.select('eye')
+        this.setTheme(this.defaultTheme)
       }
     },
     mounted() {
