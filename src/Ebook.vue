@@ -16,6 +16,8 @@
               :themeList="themeList"
               :defaultTheme="defaultTheme"
               @setTheme="setTheme"
+              :bookAvailable="bookAvailable"
+              @onProgressChange="onProgressChange"
               ref="menuBar"></menu-bar>
   </div>
 </template>
@@ -27,7 +29,10 @@
   const DOWNLOAD_URL = '/static/test.epub'
   export default {
     name: "Ebook",
-    components: {MenuBar, TitleBar},
+    components: {
+      MenuBar,
+      TitleBar
+    },
     data () {
       return {
         ifTitleAndMenuShow: false,
@@ -75,10 +80,18 @@
             }
           }
         ],
-        defaultTheme: 0
+        defaultTheme: 0,
+        // 图书是否是可用状态
+        bookAvailable: false
       }
     },
     methods: {
+      // 进度条的数值 (0-100)
+      onProgressChange(progress) {
+        const percentage = progress / 100
+        const location = percentage > 0 ? this.locations.cfiFromPercentage(percentage) : 0
+        this.rendition.display(location)
+      },
       setTheme (index) {
         this.themes.select(this.themeList[index].name)
         this.defaultTheme = index
@@ -133,9 +146,10 @@
         // 获取 Locations 对象
         // 通过 epubjs 的钩子函数来实现
         this.book.ready.then(() => {
-          this.book.locations.generate()
-        }).then(result => {
-          console.log(result);
+          return this.book.locations.generate()
+        }).then(() => {
+          this.locations = this.book.locations
+          this.bookAvailable = true
         })
         // console.log(this.book.locations);
       }
