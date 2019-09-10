@@ -28,10 +28,6 @@
   export default {
     name: "Ebook",
     components: {MenuBar, TitleBar},
-    comments: {
-      TitleBar,
-      MenuBar
-    },
     data () {
       return {
         ifTitleAndMenuShow: false,
@@ -135,7 +131,13 @@
         this.registerTheme()
         this.setTheme(this.defaultTheme)
         // 获取 Locations 对象
-        console.log(this.book.locations);
+        // 通过 epubjs 的钩子函数来实现
+        this.book.ready.then(() => {
+          this.book.locations.generate()
+        }).then(result => {
+          console.log(result);
+        })
+        // console.log(this.book.locations);
       }
     },
     mounted() {
