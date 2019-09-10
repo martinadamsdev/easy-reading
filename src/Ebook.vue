@@ -75,7 +75,7 @@
             name: 'gold',
             style: {
               body: {
-                'color': '#000', 'background': 'rgba(241, 236, 226)'
+                'color': '#000', 'background': '#F1DFCF'
               }
             }
           }

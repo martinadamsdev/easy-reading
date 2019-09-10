@@ -55,8 +55,8 @@
                    max="100"
                    min="0"
                    step="1"
-                   @change="onProgressChange($evnet.target.value)"
-                   @input="onProgressInput($evnet.target.value)"
+                   @change="onProgressChange($event.target.value)"
+                   @input="onProgressInput($event.target.value)"
                    :value="progress"
                    :disabled="!bookAvailable"
                    ref="progress">
@@ -235,17 +235,28 @@
           .progress
             width: 100%
             -webkit-appearance: none
+            outline: none
             height: px2rem(2)
             background: -webkit-linear-gradient(#999, #999) no-repeat, #ddd
             background-size: 0 100%
             &.focus
               outline: none
             &::-webkit-slider-thumb
+              -webkit-appearance: none
               height: px2rem(20)
               width: px2rem(20)
               border-radius: 50%
               background: white
               box-shadow: 0 4px 4px 0 rgba(0, 0, 0, .15)
               border: px2rem(1) solid #ddd
+        .text-wrapper
+          position: absolute
+          width: 100%
+          height: 10%
+          top: px2rem(50)
+          @include center
+          font-size: px2rem(12)
+
+
 
 </style>
