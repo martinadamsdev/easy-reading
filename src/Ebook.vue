@@ -13,8 +13,8 @@
               :fontSizeList="fontSizeList"
               :defaultFontSize="defaultFontSize"
               @setFontSize="setFontSize"
-              @themeList="themeList"
-              @defaultTheme="defaultTheme"
+              :themeList="themeList"
+              :defaultTheme="defaultTheme"
               @setTheme="setTheme"
               ref="menuBar"></menu-bar>
   </div>
@@ -77,22 +77,19 @@
                 'color': '#000', 'background': 'rgba(241, 236, 226)'
               }
             }
-          },
+          }
         ],
         defaultTheme: 0
       }
     },
     methods: {
       setTheme (index) {
-        // console.log(this.themes.themeList);
-        // console.log(index);
-        this.themes.select(this.themes.themeList[index].name)
+        this.themes.select(this.themeList[index].name)
         this.defaultTheme = index
-        // console.log(this.themes.themeList);
       },
       registerTheme () {
         this.themeList.forEach(theme => {
-          console.log(theme);
+          // console.log(theme);
           this.themes.register(theme.name, theme.style)
         })
       },
@@ -119,7 +116,7 @@
         }
       },
       // 电子书的解析和渲染
-      showEpub() {
+      showEpub () {
         // 生成 Ebook
         this.book = new Epub(DOWNLOAD_URL)
         // 生成 Rendtion
@@ -137,6 +134,8 @@
         // this.themes.select(name)
         this.registerTheme()
         this.setTheme(this.defaultTheme)
+        // 获取 Locations 对象
+        console.log(this.book.locations);
       }
     },
     mounted() {

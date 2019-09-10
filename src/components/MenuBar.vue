@@ -45,7 +45,7 @@
                    :class="{'no-border': item.style.body.background !== '#fff'}"
 
               ></div>
-              <div class="text" :class="{'selected': index === defaultTheme}">{{item.name}}</div>
+              <div class="text" :class="{'selected': index === defaultTheme }">{{item.name}}</div>
             </div>
         </div>
       </div>
@@ -191,8 +191,8 @@
           .text
             flex: 0 0 px2rem(20)
             font-size: px2rem(11)
-            color: #333
+            color: #ccc
             @include center
-            &.select
-              color: #ccc
+            &.selected
+              color: #333
 </style>
