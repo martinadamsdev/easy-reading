@@ -57,7 +57,7 @@
                    step="1"
                    @change="onProgressChange($event.target.value)"
                    @input="onProgressInput($event.target.value)"
-                   :value="progress"
+                   v-model="progress"
                    :disabled="!bookAvailable"
                    ref="progress">
           </div>
@@ -78,7 +78,6 @@
         ifSettingShow: false,
         showTag: 0,
         progress: 0,
-        // bookAvailable: false
       }
     },
     props: {
@@ -256,7 +255,4 @@
           top: px2rem(50)
           @include center
           font-size: px2rem(12)
-
-
-
 </style>

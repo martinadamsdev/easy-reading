@@ -116,12 +116,26 @@
       },
       prevPage () {
         if (this.rendition) {
-          this.rendition.prev()
+          this.rendition.prev().then(() => {
+            // 点击上一页,控制进度条变化
+            if (this.locations) {
+              const currentLocation = this.rendition.currentLocation()
+              let progress = Math.ceil(this.locations.percentageFromCfi(currentLocation.start.cfi) * 100)
+              this.$refs.menuBar.onProgressInput (progress)
+            }
+          })
         }
       },
       nextPage () {
         if (this.rendition) {
-          this.rendition.next()
+          this.rendition.next().then(() => {
+            // 点击上一页,控制进度条变化
+            if (this.locations) {
+              const currentLocation = this.rendition.currentLocation()
+              let progress = Math.ceil(this.locations.percentageFromCfi(currentLocation.start.cfi) * 100)
+              this.$refs.menuBar.onProgressInput (progress)
+            }
+          })
         }
       },
       // 电子书的解析和渲染
