@@ -18,15 +18,17 @@
               @setTheme="setTheme"
               :bookAvailable="bookAvailable"
               @onProgressChange="onProgressChange"
+              :navigation="navigation"
+              @jumpTo="jumpTo"
               ref="menuBar"></menu-bar>
   </div>
 </template>
 
 <script>
-  import TitleBar from "@/components/TitleBar"
-  import MenuBar from "@/components/MenuBar"
+  import TitleBar from "components/TitleBar"
+  import MenuBar from "components/MenuBar"
   import Epub from 'epubjs'
-  const DOWNLOAD_URL = '/static/test.epub'
+  const DOWNLOAD_URL = '/static/图解物联网.epub'
   export default {
     name: "Ebook",
     components: {
@@ -82,12 +84,27 @@
         ],
         defaultTheme: 0,
         // 图书是否是可用状态
-        bookAvailable: false
+        bookAvailable: false,
+        navigation: {}
       }
     },
     methods: {
+      // 目录链接跳转
+      jumpTo (href) {
+        this.rendition.display(href)
+        this.hideTitleAndMenuShow()
+      },
+      hideTitleAndMenuShow () {
+        // 隐藏标题栏和菜单栏
+        this.ifTitleAndMenuShow = false
+        // 隐藏菜单弹出的设置栏
+        this.$refs.menuBar.hideSetting()
+        // 隐藏目录
+        this.$refs.menuBar.hideContent()
+
+      },
       // 进度条的数值 (0-100)
-      onProgressChange(progress) {
+      onProgressChange (progress) {
         const percentage = progress / 100
         const location = percentage > 0 ? this.locations.cfiFromPercentage(percentage) : 0
         this.rendition.display(location)
@@ -98,7 +115,6 @@
       },
       registerTheme () {
         this.themeList.forEach(theme => {
-          // console.log(theme);
           this.themes.register(theme.name, theme.style)
         })
       },
@@ -115,6 +131,8 @@
         }
       },
       prevPage () {
+        this.ifTitleAndMenuShow = true
+        this.$refs.menuBar.showSetting(2)
         if (this.rendition) {
           this.rendition.prev().then(() => {
             // 点击上一页,控制进度条变化
@@ -128,6 +146,8 @@
       },
       nextPage () {
         if (this.rendition) {
+          this.ifTitleAndMenuShow = true
+          this.$refs.menuBar.showSetting(2)
           this.rendition.next().then(() => {
             // 点击上一页,控制进度条变化
             if (this.locations) {
@@ -159,8 +179,9 @@
         this.setTheme(this.defaultTheme)
         // 获取 Locations 对象
         // 通过 epubjs 的钩子函数来实现
-        this.book.ready.then(() => {
-          return this.book.locations.generate()
+        this.book.ready.then(chars => {
+          this.navigation = this.book.navigation
+          return this.book.locations.generate(chars)
         }).then(() => {
           this.locations = this.book.locations
           this.bookAvailable = true

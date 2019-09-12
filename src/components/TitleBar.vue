@@ -2,7 +2,9 @@
   <transition name="slide-down">
     <div class="title-wrapper" v-show="ifTitleAndMenuShow">
       <div class="left">
-        <span class="icon-back icon"></span>
+        <div class="icon-wrapper">
+          <span class="icon-back icon"></span>
+        </div>
       </div>
       <div class="right">
         <div class="icon-wrapper">

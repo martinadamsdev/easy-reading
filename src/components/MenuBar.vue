@@ -3,7 +3,7 @@
     <transition name="slide-up">
       <div class="menu-wrapper" :class="{'hide-box-shadow': ifSettingShow || !ifTitleAndMenuShow}" v-show="ifTitleAndMenuShow">
         <div class="icon-wrapper">
-          <span class="icon-menu icon"></span>
+          <span class="icon-menu icon" @click="showSetting(3)"></span>
         </div>
         <div class="icon-wrapper">
           <span class="icon-progress icon" @click="showSetting(2)"></span>
@@ -67,17 +67,32 @@
         </div>
       </div>
     </transition>
+    <content-view :ifShowContent="ifShowContent"
+                  v-show="ifShowContent"
+                  :navigation="navigation"
+                  :bookAvailable="bookAvailable"
+                  @jumpTo="jumpTo"></content-view>
+    <transition name="fade">
+      <div class="content-mask"
+           v-show="ifShowContent"
+           @click="hideContent"></div>
+    </transition>
   </div>
 </template>
 
 <script>
+  import ContentView from "components/Content";
   export default {
     name: "MenuBar",
+    components: {
+      ContentView
+    },
     data () {
       return {
         ifSettingShow: false,
         showTag: 0,
         progress: 0,
+        ifShowContent: false
       }
     },
     props: {
@@ -89,9 +104,16 @@
       defaultFontSize: Number,
       themeList: Array,
       defaultTheme: Number,
-      bookAvailable: Boolean
+      bookAvailable: Boolean,
+      navigation: Object
     },
     methods: {
+      hideContent () {
+        this.ifShowContent = false
+      },
+      jumpTo (href) {
+        this.$emit('jumpTo', href)
+      },
       onProgressInput (progress) {
         this.progress = progress
         this.$refs.progress.style.backgroundSize = `${this.progress}% 100%`
@@ -106,8 +128,13 @@
         this.$emit('setFontSize', fontSize)
       },
       showSetting (tag) {
-        this.ifSettingShow = true
         this.showTag = tag
+        if (this.showTag === 3) {
+          this.ifSettingShow = false
+          this.ifShowContent =true
+        } else {
+          this.ifSettingShow = true
+        }
       },
       hideSetting () {
         this.ifSettingShow = false
@@ -255,4 +282,13 @@
           top: px2rem(50)
           @include center
           font-size: px2rem(12)
+    .content-mask
+      position: absolute
+      top: 0
+      left: 0
+      z-index: 101
+      display: flex
+      width: 100%
+      height: 100%
+      background: rgba(51, 51, 51, .8)
 </style>

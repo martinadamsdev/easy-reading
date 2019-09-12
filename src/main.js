@@ -2,8 +2,8 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import '@/assets/styles/icon.css'
-import '@/assets/styles/global.sass'
+import 'assets/styles/icon.css'
+import 'assets/styles/global.sass'
 // import '@/assets/test.epub'
 
 Vue.config.productionTip = false
