@@ -1,5 +1,5 @@
-# vue-demo
-开始学习 Vue
+# epubReading
+epubReading 电子书阅读器的初期定位是一个 vue 的入门级项目。
 
 ## Project setup
 ```
