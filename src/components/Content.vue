@@ -2,6 +2,7 @@
   <transition name="slide-right">
     <div class="content">
       <div class="content-wrapper" v-if="bookAvailable">
+        <h5>目录</h5>
         <div class="content-item"
              v-for="(item, index) in navigation.toc"
              :key="index"
@@ -34,31 +35,29 @@
 <style scoped lang="sass">
   @import "assets/styles/global"
   .content
-    width: 100%
-    height: 100%
-    background: white
-    .content-wrapper /*目录样式*/
+    .content-wrapper
       position: absolute
-      z-index: 100
+      bottom: 0
+      left: 0
+      z-index: 102
+      display: flex
+      flex-direction: column
       width: 100%
       height: 100%
+      background: white
+      h5
+        @include center
+        padding-top: px2rem(10)
+        font-size: px2rem(20)
       .content-item
-        flex: 0
-        position: absolute
-        top: 0
-        left: 0
-        z-index: 101
-        display: flex
+        flex: 1
         width: 100%
-        height: 100%
-        background: white
+        height: px2rem(10)
+        line-height: px2rem(10)
+        padding-left: px2rem(15)
         .text
-          position: absolute
           width: 100%
-          height: 10%
-          top: px2rem(50)
-          @include center
-          font-size: px2rem(12)
-
-
+          color: #333
+          cursor: pointer
+          font-size: px2rem(10)
 </style>
