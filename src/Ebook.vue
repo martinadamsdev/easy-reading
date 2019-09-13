@@ -180,9 +180,9 @@
         // 获取 Locations 对象
         // 通过 epubjs 的钩子函数来实现
         this.book.ready.then(chars => {
-          this.navigation = this.book.navigation
           return this.book.locations.generate(chars)
         }).then(() => {
+          this.navigation = this.book.navigation
           this.locations = this.book.locations
           this.bookAvailable = true
         })

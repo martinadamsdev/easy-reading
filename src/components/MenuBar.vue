@@ -75,7 +75,8 @@
     <transition name="fade">
       <div class="content-mask"
            v-show="ifShowContent"
-           @click="hideContent"></div>
+           @click="hideContent">
+      </div>
     </transition>
   </div>
 </template>
