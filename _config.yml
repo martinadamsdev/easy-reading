@@ -5,5 +5,4 @@ SEOTitle: 你的博客 | You Blog    	 #显示在浏览器上搜索的时候显�
 email: w3cfed@gmail.com
 description: "You Blog"  			 #网站介绍
 keyword: "" #关键词
-url: "https://w3cfed.github.io"          # 这个就是填写你的博客地址
-baseurl: ""      # 这个我们不用填写
+url: "https://w3cfed.github.io"
