@@ -1,11 +1,14 @@
 'use strict'
 const path = require('path')
-const resolve = dir => {return path.join(__dirname, dir)}
+const resolve = dir => {
+  return path.join(__dirname, dir)
+}
 
 module.exports = {
   // assetsDir: './src/static',
   // lintOnSave: true, // 是否开启eslint保存检测
   // productionSourceMap: false, // 是否在构建生产包时生成sourcdeMap
+  publicPath: process.env.NODE_ENV  === 'production' ? './' : '/',
   chainWebpack: config => {
     config.resolve.alias
       .set('@', resolve('src'))

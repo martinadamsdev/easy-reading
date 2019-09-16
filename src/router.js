@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Ebook from './Ebook'
+import Home from '@/views/Home'
+// import Ebook from './Ebook'
 
 Vue.use(Router)
 
@@ -10,8 +11,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'ebook',
-      component: Ebook
+      name: 'home',
+      component: Home
     },
     // {
     //   path: '/ebook',
