@@ -1,8 +1,1 @@
-#theme: jekyll-theme-cayman
-#title: You Blog    				  	#你博客的标题
-#SEOTitle: 你的博客 | You Blog    	 #显示在浏览器上搜索的时候显示的标题
-##header-img: img/post-bg-rwd.jpg  	#显示在首页的背景图片
-#email: w3cfed@gmail.com
-#description: "You Blog"  			 #网站介绍
-#keyword: "" #关键词
-#url: "https://w3cfed.github.io/epubReading/dist"
+theme: jekyll-theme-cayman
