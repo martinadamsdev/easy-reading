@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/views/Home'
+// import Home from '@/views/Home'
 // import Ebook from './Ebook'
 
 Vue.use(Router)
@@ -11,14 +11,13 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
+      redirect: '/ebook'
     },
-    // {
-    //   path: '/ebook',
-    //   name: 'ebook',
-    //   component: Ebook
-    // }
+    {
+      path: '/ebook',
+      name: 'ebook',
+      component: () => import(/* webpackChunkName: "about" */ './views/ebook/index.vue')
+    }
     // {
     //   path: '/about',
     //   name: 'about',
